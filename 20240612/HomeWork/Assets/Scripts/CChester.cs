@@ -1,32 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CChester : MonoBehaviour, IInteractable
+public class CChester : CInteraction
 {
-    private float detectRange = 0.5f;
+    // Animator
+    public Animator chesterAnim = null;
 
-    void Start()
+    public override void ShowPreInteract()
     {
-        
+        dialog.SetActive(true);
+
+        name.text = "나루호도";
+        talk.color = Color.blue;
+        talk.text = "(이 상자 F를 눌러서 열어볼까?)";
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ShowInteract()
     {
-        
+        // Set Animation
+        chesterAnim.SetBool("isOpen", true);
+
+        // Set Text
+        talk.text = "(별거 없네...)";
     }
 
-    void OnTriggerEnter(Collider other)
+    public override void Init()
     {
-        if (other.CompareTag("Interactable"))
-        {
-
-        }
-    }
-
-    public void ShowInteract()
-    {
-        throw new System.NotImplementedException();
+        dialog.SetActive(false);
+        chesterAnim.SetBool("isOpen", false);
     }
 }
+

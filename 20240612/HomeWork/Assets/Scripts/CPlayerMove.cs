@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CPlayerMove : MonoBehaviour
 {
-    public GameObject Wright = null;
-
     float xDirection = 0f;
     float zDirection = 0f;
 
     private float speed = 8f;
     private float detectRange = 1f;
 
+    private bool isContact = false;
+    private CInteraction itc = null;
+
     void Update()
     {
         GetInput();
-        ShowInteract();
+        GetFInput();
     }
 
     void GetInput()
@@ -23,20 +25,67 @@ public class CPlayerMove : MonoBehaviour
         xDirection = Input.GetAxis("Horizontal");
         zDirection = Input.GetAxis("Vertical");
 
-        gameObject.transform.position += new Vector3(xDirection * speed * Time.deltaTime, 0f, zDirection * speed * Time.deltaTime);
+        BanPassForward();
+
+        transform.position += transform.right * speed * Time.deltaTime * xDirection;
+        transform.position += transform.forward * speed * Time.deltaTime * zDirection;
     }
 
-    public void ShowInteract()
+    void OnTriggerEnter(Collider other)
     {
-        if (Physics.Raycast(Wright.GetComponent<Transform>().transform.position, Wright.GetComponent<Transform>().transform.forward, out RaycastHit hit, detectRange))
+        if (other.CompareTag("Interactable"))
         {
-            print(hit.collider.name);
-            if(hit.collider.CompareTag("Interactable"))
+            itc = other.GetComponent<CInteraction>();
+            if (itc != null)
             {
-                print("!");
-                if(zDirection > 0f)
+                isContact = true;
+                itc.ShowPreInteract();
+            }
+        }
+    }
+
+    void GetFInput()
+    {
+        if (isContact)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                itc.ShowInteract();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        itc = other.GetComponent<CInteraction>();
+
+        if(itc != null)
+        {
+            isContact = false;
+            itc.Init();
+        }
+    }
+
+
+    public void BanPassForward()
+    {
+        List<Vector3> pos = new List<Vector3>();
+
+        pos.Add(transform.position + new Vector3(0f, 0.5f, 0f));
+        pos.Add(transform.position + new Vector3(0f, 1f, 0f));
+
+        foreach(Vector3 i in pos)
+        {
+            // check forward
+            if (Physics.Raycast(i, transform.forward, out RaycastHit hit, detectRange))
+            {
+                if (hit.collider.CompareTag("Wall"))
                 {
-                    zDirection = 0f;
+                    // Make zDirection Zero
+                    if (zDirection > 0f)
+                    {
+                        zDirection = 0f;
+                    }
                 }
             }
         }
