@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class Box : MonoBehaviour, IHitable
 
         Ray ray = new Ray(Vector3.zero, Vector3.up);
         //Physics.Raycast(ray, Mathf.Infinity,  1 << LayerMask.NameToLayer("Monster"));
-        Physics.Raycast(ray, Mathf.Infinity, someLayer); // ÀÌ·¸°Ô ÇÏ¸é ÀÎ½ºÆåÅÍ¿¡¼­ ¼³Á¤ÇÑ °ªÀ¸·Î ÆíÇÏ°Ô µé¾î°¨
+        Physics.Raycast(ray, Mathf.Infinity, someLayer); // ì´ë ‡ê²Œ í•˜ë©´ ì¸ìŠ¤íŽ™í„°ì—ì„œ ì„¤ì •í•œ ê°’ìœ¼ë¡œ íŽ¸í•˜ê²Œ ë“¤ì–´ê°
     }
 
     public void Hit(float damage)

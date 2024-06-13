@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Orc : Moster
 {
-    public string orcPassive = "¿ÀÅ©´Â µ¥¹ÌÁö¸¦ 10% ´ú ¹Ş½À´Ï´Ù.";
+    public string orcPassive = "ì˜¤í¬ëŠ” ë°ë¯¸ì§€ë¥¼ 10% ëœ ë°›ìŠµë‹ˆë‹¤.";
 
     private void Start()
     {

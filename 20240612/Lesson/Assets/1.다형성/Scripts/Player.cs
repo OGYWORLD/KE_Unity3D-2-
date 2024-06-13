@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +20,8 @@ public class Player : MonoBehaviour, IHitable
 
     void Update()
     {
-        // Input Manager¸¦ È°¿ëÇÑ ±â´É.
-        // ±âÁ¸: Input.GetMouseButtonDown(0)
+        // Input Managerë¥¼ í™œìš©í•œ ê¸°ëŠ¥.
+        // ê¸°ì¡´: Input.GetMouseButtonDown(0)
         if (Input.GetButtonDown("Fire1"))
         {
             Shot();
@@ -32,18 +32,18 @@ public class Player : MonoBehaviour, IHitable
     {
         //Debug.Log($"{gameObject.name} press button");
 
-        // Åõ»çÃ¼ °°Àº °Ç ¿ÀºêÁ§Æ® Ç®¸µÀ¸·Î ÇÒ °Í.
-        // ½ºÅ©¸³Æ®¸¦ Instantiate·Î »ı¼ºÇÒ ¼ö ÀÖÀ½
+        // íˆ¬ì‚¬ì²´ ê°™ì€ ê±´ ì˜¤ë¸Œì íŠ¸ í’€ë§ìœ¼ë¡œ í•  ê²ƒ.
+        // ìŠ¤í¬ë¦½íŠ¸ë¥¼ Instantiateë¡œ ìƒì„±í•  ìˆ˜ ìˆìŒ
         Bullet bullet = Instantiate(bulletPrefab, shotPoint.position, shotPoint.rotation);
 
         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 10f, ForceMode.Impulse);
-        // Á¤È®ÇÏ°Ô ¾Ë°í ½Í´Ù¸é  Unity Documentation¿¡ °Ë»öÇØ º¸ÀÚ.
+        // ì •í™•í•˜ê²Œ ì•Œê³  ì‹¶ë‹¤ë©´  Unity Documentationì— ê²€ìƒ‰í•´ ë³´ì.
 
-        // ÃÑ¾Ë¿¡ ÀÖ´Â damage º¯¼ö¿¡ ÀÚ½ÅÀÌ °¡Áö°í ÀÖ´Â damage ³»¿ë ¿Å°ÜÁÜ.
+        // ì´ì•Œì— ìˆëŠ” damage ë³€ìˆ˜ì— ìì‹ ì´ ê°€ì§€ê³  ìˆëŠ” damage ë‚´ìš© ì˜®ê²¨ì¤Œ.
         bullet.damage = damage;
 
-        // bullet¿¡°Ô ¸Â¾Æ¾ß ÇÒ ´ë»óÀÇ Layer¸¦ ÁöÁ¤
-        // Layer¸¦ »ç¿ëÇÒ ¶§´Â ½ÃÇÁÆ® ¿¬»êÀÚ¸¦ »ç¿ëÇØ¾ß µÊ(ÀÌÀ¯´Â ³ªÁß¿¡~)
+        // bulletì—ê²Œ ë§ì•„ì•¼ í•  ëŒ€ìƒì˜ Layerë¥¼ ì§€ì •
+        // Layerë¥¼ ì‚¬ìš©í•  ë•ŒëŠ” ì‹œí”„íŠ¸ ì—°ì‚°ìë¥¼ ì‚¬ìš©í•´ì•¼ ë¨(ì´ìœ ëŠ” ë‚˜ì¤‘ì—~)
         bullet.targetLayer = (1 << LayerMask.NameToLayer("Box")) + (1 << LayerMask.NameToLayer("Monster"));
 
 
@@ -54,6 +54,6 @@ public class Player : MonoBehaviour, IHitable
 
 /*
 
-Ctrl + Shif + F : ¼±ÅÃÇÑ ¿ÀºêÁ§Æ®¸¦ ³»°¡ º¸´Â ½ÃÁ¡À¸·Î ¿Å±â±â
+Ctrl + Shif + F : ì„ íƒí•œ ì˜¤ë¸Œì íŠ¸ë¥¼ ë‚´ê°€ ë³´ëŠ” ì‹œì ìœ¼ë¡œ ì˜®ê¸°ê¸°
  
  */
