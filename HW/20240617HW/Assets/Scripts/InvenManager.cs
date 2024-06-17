@@ -11,6 +11,8 @@ public class InvenManager : MonoBehaviour
 
     const int ITEM_NUM = 4;
 
+    public int itemListIdx = 0;
+
     public enum EITEMS
     {
         ARROW,
@@ -27,13 +29,15 @@ public class InvenManager : MonoBehaviour
         public readonly bool m_isWeapon { get; }
         public readonly bool m_isOnce { get; }
         public bool m_isOpen { get; set; }
+        public int m_idx { get; set; }
 
-        public Item(EITEMS _i, bool _w, bool _o, bool _p)
+        public Item(EITEMS _i, bool _w, bool _o, bool _p, int _x)
         {
             m_name = _i;
             m_isWeapon = _w;
             m_isOnce = _o;
             m_isOpen = _p;
+            m_idx = _x;
         }
     }
 
@@ -53,9 +57,6 @@ public class InvenManager : MonoBehaviour
 
         // Set List
         items = new List<Item>();
-
-        //FOR DEBUG!
-        items.Add(new Item(EITEMS.ARROW, true, true, false));
     }
 
     private void Update()
@@ -73,7 +74,9 @@ public class InvenManager : MonoBehaviour
 
                 perItem.transform.SetParent(PannelParent);
 
-                items[i] = new Item(items[i].m_name, items[i].m_isWeapon, items[i].m_isOnce, true);
+                perItem.transform.localScale = new Vector3(1f, 1f, 1f);
+
+                items[i] = new Item(items[i].m_name, items[i].m_isWeapon, items[i].m_isOnce, true, items[i].m_idx);
             }
         }
     }
