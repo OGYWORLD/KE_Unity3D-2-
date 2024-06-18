@@ -36,11 +36,11 @@ public class GenericTest : MonoBehaviour
         // 새 Sphere의 위치를 Sphere1과 Sphere2 사이에 두고 싶음
         // 새 Sphere의 색을 Sphere1과 Sphere2의 rgb의 딱 중간값으로 설정하고 싶음
 
-        newSphere.transform.position = GetMiddle<Vector3>(sphere1.transform.position, sphere2.transform.position);
+        //newSphere.transform.position = GetMiddle<Vector3>(sphere1.transform.position, sphere2.transform.position);
 
-        newSphere.GetComponent<Renderer>().material.color =
-            GetMiddle<Color>(sphere1Renderer.material.color,
-            sphere2Renderer.material.color);
+        //newSphere.GetComponent<Renderer>().material.color =
+            //GetMiddle<Color>(sphere1Renderer.material.color,
+            //sphere2Renderer.material.color);
 
         //MyGeneric<int> myIntGeneric = new MyGeneric<int>(1);
         //print(myIntGeneric.GetSome()); // 1
@@ -71,6 +71,7 @@ public class GenericTest : MonoBehaviour
     }
     */
 
+    /*
     private T GetMiddle<T>(T a, T b)
     {
         dynamic da = a;
@@ -79,4 +80,5 @@ public class GenericTest : MonoBehaviour
 
         return (T)c;
     }
+*/
 }

@@ -1,0 +1,1 @@
+{"name":"법사","level":5,"exp":600.0,"hp":300,"attack":25,"items":[1,4,2],"skills":[{"id":1,"level":1,"upgrade":0},{"id":2,"level":2,"upgrade":1},{"id":3,"level":3,"upgrade":2}]}
