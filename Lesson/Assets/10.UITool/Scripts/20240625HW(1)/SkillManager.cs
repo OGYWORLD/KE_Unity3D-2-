@@ -27,6 +27,7 @@ public class SkillManager : MonoBehaviour
 [Serializable]
 public class SkillInfo
 {
+    public int curSkillLevel;
     public int skillLevel;
     public int[] conditionSkills;
     public bool isOpen;

@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    // 
     public Image iconImage;
 
     // internal
@@ -135,7 +134,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
         InventoryManager.instance.selectedSlot = null; // 선택한 슬롯 null
 
         // AnchoredPosition: 앵커로부터의 상대적 위치
-        // 부모의 위치를 내 위치로 옮긴다.
+        // 아이콘의 부모를 다시 네모상자로 바꿈
         iconImage.rectTransform.SetParent(transform);
 
         // 앵커 중심으로 갈 수 있도록 Vector2.zero 대입
